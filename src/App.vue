@@ -1,19 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld />
+    <User v-for="item in username" :key="item.id" v-bind:user="item" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import User from "./components/User";
+// import axios from "axios";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
+  mounted: function() {
+    this.updateName("");
+  },
+  data() {
+    return {
+      users: []
+    };
+  },
   components: {
-    HelloWorld
+    HelloWorld,
+    User
+  },
+  computed: {
+    ...mapState(["username", "message"]),
+    ...mapGetters(["welcomeMessage"])
+  },
+  methods: {
+    ...mapActions(["updateUsername"]),
+    updateName: function() {
+      this.updateUsername(this.name);
+    }
   }
-}
+};
 </script>
 
 <style>

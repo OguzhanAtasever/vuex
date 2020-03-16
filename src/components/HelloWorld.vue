@@ -1,8 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ username }}</h1>
-    <h1>{{ welcomeMessage }}</h1>
-    <h1>{{ username }}</h1>
+    <h1>{{ username.length }}</h1>
     <input v-model="name" type="text" />
     <button @click="updateName"> Update Name</button>
   </div>
